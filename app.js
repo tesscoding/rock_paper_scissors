@@ -1,53 +1,52 @@
 
-var playerSelection=playerInput();
-//console.log(playerSelection);
-var computerSelection=computerPlay();
-//console.log(computerSelection);
-var result =playRound(playerSelection, computerSelection);
-if(result=="loss"){
-    console.log("You lose!");
-}
-else if(result=="win"){
-    console.log("You win!");
-}
-else{
-    console.log("Draw.")
-}
-//console.log(result);
-function playerInput(){
-    //take input
-    var choice =prompt("Choose paper, scissors or rock");
-    //console.log(choice);
-    return choice;
+
+
+function playRound() {
+   const options=document.querySelectorAll("button");
+   options.forEach(option=>{
+    option.addEventListener("click", function(){
+        const compOptions=["paper", "scissors", "rock"];
+        var rand = Math.floor(Math.random()*3);
+        const computerSelection=options[rand].textContent;
+
+        const playerSelection=this.textContent;
+        console.log(playerSelection,computerSelection);
+        compareHands(playerSelection,computerSelection);
+    })
+})
+
+
+
+
 
 }
-function computerPlay(){
-    var selection=["paper", "scissors", "rock"];
-    var result = Math.floor(Math.random()*3);
-    //console.log(result);
-    return selection[result];
-}
-function playRound(playerSelection, computerSelection) {
-    // your code here!
-    
-    
+function compareHands(playerSelection, computerSelection){
+    const result=document.querySelector(".result");   
     //if they are the same return a draw
-    if(playerSelection==computerSelection){
-        return 'draw';
-    }
-    if(playerSelection=='rock'&&computerSelection=='paper'){
-        return 'loss';
-    }
-    if(playerSelection=='rock'&&computerSelection=='scissors'){
-        return 'win';
-    }if(playerSelection=='scissors'&&computerSelection=='rock'){
-        return 'loss';
-    }if(playerSelection=='scissors'&&computerSelection=='paper'){
-        return 'win';
-    }if(playerSelection=='paper'&&computerSelection=='rock'){
-        return 'win';
-    }if(playerSelection=='paper'&&computerSelection=='scissors'){
-        return 'loss';
-    }
-   
+   if(playerSelection==computerSelection){
+    result.textContent=`Draw! You both picked ${playerSelection}.`;
+    return
 }
+if(playerSelection=='rock'&&computerSelection=='paper'){
+    result.textContent=`You lose! Paper beats rock.`;
+    return
+}
+if(playerSelection=='rock'&&computerSelection=='scissors'){
+    result.textContent='You win! Rock beats scissors';
+    return
+}if(playerSelection=='scissors'&&computerSelection=='rock'){
+    result.textContent=`You lose! Rock beats scissors.`;
+    return
+}if(playerSelection=='scissors'&&computerSelection=='paper'){
+    result.textContent=`You win! Scissors beats paper.`;
+    return
+}if(playerSelection=='paper'&&computerSelection=='rock'){
+    result.textContent='You win! Paper beats rock.';
+    return
+}if(playerSelection=='paper'&&computerSelection=='scissors'){
+    result.textContent=`You lose! Scissors beats paper.`;
+    return
+}
+}
+
+playRound();
