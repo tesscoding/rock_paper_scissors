@@ -4,15 +4,39 @@
 	<link rel="stylesheet" type="text/css" href="./style.css"/>
 </head>
 <body>
-	<div class="box">
-		<h1 class="result">Choose Your Weapon!</h1>
-	</div>
-	<div class="center-buttons">
+	<div class="game-screen">
+			<div class="round-counter">
+				<span>Round </span>
+				<span class="update-round">0</span>
+			</div>
+		<div class ="scores">
+			<div class="player-score">
+				<h3>Player 1 Score:</h3>
+				<p>0</p>
+			</div>
+			<div class ="computer-score">
+				<h3>Computer Score:</h3>
+				<p>0</p>
+			</div>
+		</div>
+		<div class="box">
+			<h1 class="result">Choose Your Weapon!</h1>
+		</div>
+		<div class="choices">
+			<h3 class="player-choice">Player 1:</h3>
+			<h3 class ="computer-choice">Computer choice:</h3>
+		</div>
+		<div class="center-buttons">
 
-		<button id="Paper">paper</button>
-		<button id="Scissors">scissors</button>
-		<button id="Rock">rock</button>
+			<button class="choice">paper</button>
+			<button class="choice">scissors</button>
+			<button class="choice">rock</button>
+		</div>
+	</div>
+	<div class="results-screen">
+		<h1>GAME OVER</h1>
+		<button class="play-again">Play Again</button>
 	</div>
 
-</body>
-<script type="text/javascript" src="app.js"></script>
+	</body>
+	<script type="text/javascript" src="app.js"></script>
