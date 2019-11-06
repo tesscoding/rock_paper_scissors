@@ -34,9 +34,11 @@ function updateRound(){
   
 }
 function resetGame(){
+         rNumber=0;
+        cScore=0;
+        pScore=0;
         
-        
-        
+
         const playAgain=document.querySelector(".play-again");
         playAgain.addEventListener("click", function(){
             finalScreen.style.visibility="hidden";
@@ -48,7 +50,7 @@ function resetGame(){
             resultMessage.style.display="none";
             openingMessage.style.display="block";
             //openingButtons.style.visibility="visible";
-            playRound();
+            //playRound();
         });
    }
 function showEndScreen(){
@@ -63,9 +65,7 @@ function showEndScreen(){
     scores.style.visibility="hidden";
     choices.style.visibility="hidden";
      finalScreen.style.visibility="visible";
-     rNumber=0;
-        cScore=0;
-        pScore=0;
+
      resetGame();
  }
 
@@ -78,8 +78,7 @@ function playRound() {
    const playerChoice=document.querySelector(".player-choice");
    options.forEach(option=>{
     option.addEventListener("click", function(){
-    
-        openingMessage.style.display="none";
+          openingMessage.style.display="none";
         resultMessage.style.display="block";
         roundCounter.style.visibility="visible";
         scores.style.visibility="visible";
@@ -95,11 +94,9 @@ function playRound() {
         if(pScore==5||cScore==5){
           showEndScreen();
         }
-            console.log(rNumber, cScore, pScore);
+      
     })
 })
-
-
 
 
 
