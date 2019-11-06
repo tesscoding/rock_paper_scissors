@@ -9,10 +9,15 @@
     let choices=document.querySelector(".choices");
     let finalScreen=document.querySelector("div.results-screen");
     let gameScreen=document.querySelector(".game-screen");
+    let resultMessage=document.querySelector(".result");
+    //let openingButtons=document.querySelector(".center-buttons");
+    let openingMessage=document.querySelector(".initial-screen h1");
+    resultMessage.style.display="none";
     roundCounter.style.visibility="hidden";
     scores.style.visibility="hidden";
     choices.style.visibility="hidden";
     finalScreen.style.visibility="hidden";
+
     playRound();
     
 
@@ -28,6 +33,24 @@ function updateRound(){
     roundNumber.textContent=`${rNumber}`;
   
 }
+function resetGame(){
+        
+        
+        
+        const playAgain=document.querySelector(".play-again");
+        playAgain.addEventListener("click", function(){
+            finalScreen.style.visibility="hidden";
+                //initialScreen.style.visibility="visible";
+            //initialScreen.forEach(item=>item.style.visibility="visible");
+            //initialScreen.forEach(item=>item.style.display="block");
+            //initialScreen.style.visibility="visible";
+            gameScreen.style.visibility="visible";
+            resultMessage.style.display="none";
+            openingMessage.style.display="block";
+            //openingButtons.style.visibility="visible";
+            playRound();
+        });
+   }
 function showEndScreen(){
     let gameResults=document.querySelector(".results-screen h1");
     if(pScore==5){
@@ -40,15 +63,24 @@ function showEndScreen(){
     scores.style.visibility="hidden";
     choices.style.visibility="hidden";
      finalScreen.style.visibility="visible";
+     rNumber=0;
+        cScore=0;
+        pScore=0;
+     resetGame();
  }
 
 function playRound() {
-
-   const options=document.querySelectorAll("button");
+    
+    
+    console.log(rNumber, cScore, pScore);
+   const options=document.querySelectorAll("button.choice");
    const computerChoice=document.querySelector(".computer-choice");
    const playerChoice=document.querySelector(".player-choice");
    options.forEach(option=>{
     option.addEventListener("click", function(){
+    
+        openingMessage.style.display="none";
+        resultMessage.style.display="block";
         roundCounter.style.visibility="visible";
         scores.style.visibility="visible";
         choices.style.visibility="visible";
@@ -63,64 +95,61 @@ function playRound() {
         if(pScore==5||cScore==5){
           showEndScreen();
         }
+            console.log(rNumber, cScore, pScore);
     })
 })
 
-   /**function resetGame(){
-        rNumber=0;
-        cScore=0;
-        pScore=0;
-   }**/
+
 
 
 
 
 }
 function compareHands(playerSelection, computerSelection){
-    const result=document.querySelector(".result");   
+    
     //if they are the same return a draw
    if(playerSelection==computerSelection){
-    result.textContent=`Draw! You both picked ${playerSelection}.`;
+    resultMessage.textContent=`Draw! You both picked ${playerSelection}.`;
     rNumber++;
     updateRound();
     return;
 }else if(playerSelection=='rock'&&computerSelection=='paper'){
-    result.textContent=`You lose! Paper beats rock.`;
+    resultMessage.textContent=`You lose! Paper beats rock.`;
     cScore++;
     rNumber++;
     updateScore();
     updateRound();
     return;
 }else if(playerSelection=='rock'&&computerSelection=='scissors'){
-    result.textContent='You win! Rock beats scissors';
+    resultMessage.textContent='You win! Rock beats scissors';
     pScore++; 
     rNumber++;
     updateScore();
     updateRound();
     return;
 }else if(playerSelection=='scissors'&&computerSelection=='rock'){
-    result.textContent=`You lose! Rock beats scissors.`;
+    resultMessage.textContent=`You lose! Rock beats scissors.`;
     cScore++;
     rNumber++;
     updateScore();
     updateRound();
     return;
 }else if(playerSelection=='scissors'&&computerSelection=='paper'){
-    result.textContent=`You win! Scissors beats paper.`;
+    resultMessage.textContent=`You win! Scissors beats paper.`;
     pScore++;
     rNumber++;
     updateScore();
     updateRound();
     return;
 }else if(playerSelection=='paper'&&computerSelection=='rock'){
-    result.textContent='You win! Paper beats rock.';
+    resultMessage.textContent='You win! Paper beats rock.';
     pScore++;
     rNumber++;
     updateScore();
     updateRound();
     return;
 }else if(playerSelection=='paper'&&computerSelection=='scissors'){
-    result.textContent=`You lose! Scissors beats paper.`;
+    resultMessage.textContent=`You lose! Scissors beats paper.`;
     cScore++;
     rNumber++;
     updateScore();
